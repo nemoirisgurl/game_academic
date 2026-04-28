@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grade Prediction App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+</head>
+
+<body class="min-h-screen bg-slate-950 text-slate-100">
+    <main class="mx-auto flex min-h-screen max-w-6xl items-center px-4 py-10 sm:px-6 lg:px-8">
+        <section class="grid w-full gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+            <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-linear-to-br from-sky-500/20 via-slate-900 to-emerald-400/10 p-8 shadow-2xl shadow-sky-950/40 sm:p-10">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,0.22),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(16,185,129,0.18),transparent_30%)]"></div>
+                <div class="relative space-y-6">
+                    <p class="inline-flex rounded-full border border-sky-400/30 bg-sky-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.28em] text-sky-200">
+                        Predictive Modeling
+                    </p>
+                    <div class="space-y-4">
+                        <h1 class="max-w-xl text-4xl font-black tracking-tight text-white sm:text-5xl">
+                            Estimate student grades from gaming habits and academic signals.
+                        </h1>
+                        <p class="max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
+                            Enter behavioral and performance metrics to generate a predicted score from the trained academic performance model.
+                        </p>
+                    </div>
+                    <div class="grid gap-4 sm:grid-cols-3">
+                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+                            <p class="text-xs uppercase tracking-[0.22em] text-slate-400">Model</p>
+                            <p class="mt-2 text-lg font-semibold text-white">Random Forest</p>
+                        </div>
+                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+                            <p class="text-xs uppercase tracking-[0.22em] text-slate-400">Input Mix</p>
+                            <p class="mt-2 text-lg font-semibold text-white">Numeric + Categorical</p>
+                        </div>
+                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+                            <p class="text-xs uppercase tracking-[0.22em] text-slate-400">Stress Level</p>
+                            <p class="mt-2 text-lg font-semibold text-white">Tailwind Form UI</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rounded-3xl border border-slate-800 bg-slate-900/90 p-6 shadow-2xl shadow-black/30 sm:p-8">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-white">Prediction Form</h2>
+                    <p class="mt-2 text-sm text-slate-400">Provide the student profile below to request a grade prediction.</p>
+                </div>
+
+                <form action="/predict" method="post" class="grid gap-5">
+                    <div class="grid gap-5 sm:grid-cols-2">
+                        <label class="grid gap-2 text-sm font-medium text-slate-200">
+                            <span>Gaming Hours per Day</span>
+                            <input class="rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20" type="number" id="gaming_hours" name="gaming_hours" step="0.1" required>
+                        </label>
+
+                        <label class="grid gap-2 text-sm font-medium text-slate-200">
+                            <span>Study Hours per Day</span>
+                            <input class="rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20" type="number" id="study_hours" name="study_hours" step="0.1" required>
+                        </label>
+
+                        <label class="grid gap-2 text-sm font-medium text-slate-200">
+                            <span>Sleep Hours per Day</span>
+                            <input class="rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20" type="number" id="sleep_hours" name="sleep_hours" step="0.1" required>
+                        </label>
+
+                        <label class="grid gap-2 text-sm font-medium text-slate-200">
+                            <span>Device Usage (hours)</span>
+                            <input class="rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20" type="number" id="device_usage" name="device_usage" step="0.1" required>
+                        </label>
+
+                        <label class="grid gap-2 text-sm font-medium text-slate-200">
+                            <span>Addiction Score</span>
+                            <input class="rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20" type="number" id="addiction_score" name="addiction_score" step="0.1" required>
+                        </label>
+
+                        <label class="grid gap-2 text-sm font-medium text-slate-200">
+                            <span>Reaction Time (ms)</span>
+                            <input class="rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20" type="number" id="reaction_time_ms" name="reaction_time_ms" step="1" required>
+                        </label>
+
+                        <label class="grid gap-2 text-sm font-medium text-slate-200">
+                            <span>Attendance (%)</span>
+                            <input class="rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20" type="number" id="attendance" name="attendance" step="0.1" required>
+                        </label>
+
+                        <label class="grid gap-2 text-sm font-medium text-slate-200">
+                            <span>Stress Level</span>
+                            <select class="rounded-2xl border border-slate-700 bg-slate-950 px-4 py-3 text-slate-100 outline-none transition focus:border-sky-400 focus:ring-2 focus:ring-sky-400/20" id="stress_level" name="stress_level" required>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <button class="mt-2 inline-flex items-center justify-center rounded-2xl bg-sky-400 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-sky-300 focus:outline-none focus:ring-2 focus:ring-sky-300/50" type="submit">
+                        Predict Grade
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
+      </form>
+    </div>
+</body>
+
+</html>
