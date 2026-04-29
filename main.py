@@ -8,6 +8,7 @@ from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import mean_squared_error, r2_score, accuracy_score
+from catboost import CatBoostRegressor
 import joblib
 
 ID_COL = "student_id"
@@ -131,11 +132,7 @@ def main():
             ("preprocess", transformer),
             (
                 "regressor",
-                RandomForestRegressor(
-                    n_estimators=100,
-                    random_state=42,
-                    max_depth=10,
-                ),
+                CatBoostRegressor(iterations=100, loss_function="RMSE"),
             ),
         ]
     )
